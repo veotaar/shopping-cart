@@ -11,8 +11,8 @@ function Navbar() {
   }, [pathname]);
 
   return (
-    <nav className="border-b border-gray-300 font-bold drop-shadow-sm">
-      <ul className="flex items-center justify-start gap-10  px-12 py-4 text-gray-900">
+    <nav className="flex h-12 items-center border-b border-gray-300 font-bold drop-shadow-sm">
+      <ul className="flex flex-1 items-center justify-start gap-10  px-12  text-gray-900">
         <li
           className={cn(
             {
