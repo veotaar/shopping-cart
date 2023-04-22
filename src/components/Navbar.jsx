@@ -1,10 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import cn from 'classnames';
+import { useCart } from '../state/CartProvider';
 
 function Navbar() {
   const [activePage, setActivePage] = useState('/');
   const { pathname } = useLocation();
+
+  const cartItems = useCart();
+  const totalItemCountInCart = cartItems.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.amountInCart,
+    0
+  );
 
   useEffect(() => {
     setActivePage(pathname);
@@ -50,7 +57,10 @@ function Navbar() {
             'ml-auto hover:border-green-700 hover:text-green-700'
           )}
         >
-          <Link to="/cart">My Cart</Link>
+          <Link to="/cart">
+            My Cart{' '}
+            <span className="text-green-700">{totalItemCountInCart > 0 ? `(${totalItemCountInCart})` : null}</span>{' '}
+          </Link>
         </li>
       </ul>
     </nav>
