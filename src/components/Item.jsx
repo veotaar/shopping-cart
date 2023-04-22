@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import cn from 'classnames';
+import { useCartDispatch } from '../state/CartProvider';
 
 function Item({ item }) {
-  const [addedAmount, setAddedAmount] = useState(0);
+  const dispatch = useCartDispatch();
 
   return (
     <div className="flex items-center justify-center gap-4 border border-gray-200 p-2 shadow-sm">
@@ -16,26 +16,42 @@ function Item({ item }) {
       <div className="flex w-2/6 items-center justify-center gap-1">
         <button
           className={cn(
-            { hidden: addedAmount < 1 },
+            { hidden: item.amountInCart < 1 },
             'rounded-full bg-green-700  px-2 py-2 text-xl text-white hover:bg-green-900'
           )}
           type="button"
-          onClick={() => setAddedAmount(addedAmount - 1)}
+          onClick={() =>
+            dispatch({
+              type: 'update',
+              payload: {
+                ...item,
+                amountInCart: item.amountInCart - 1,
+              },
+            })
+          }
         >
           <AiOutlineMinus />
         </button>
         <div
           className={cn(
-            { hidden: addedAmount < 1 },
+            { hidden: item.amountInCart < 1 },
             'w-8 rounded-full border border-gray-300 bg-gray-100 p-1 text-center sm:w-12'
           )}
         >
-          {addedAmount}
+          {item.amountInCart}
         </div>
         <button
           className="rounded-full bg-green-700 px-2 py-2 text-xl text-white hover:bg-green-900"
           type="button"
-          onClick={() => setAddedAmount(addedAmount + 1)}
+          onClick={() =>
+            dispatch({
+              type: 'update',
+              payload: {
+                ...item,
+                amountInCart: item.amountInCart + 1,
+              },
+            })
+          }
         >
           <AiOutlinePlus />
         </button>
