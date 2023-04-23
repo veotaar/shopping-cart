@@ -14,7 +14,7 @@ function Navbar() {
   }, [pathname]);
 
   return (
-    <nav className="flex h-12 items-center border-b border-gray-300 font-bold drop-shadow-sm">
+    <nav className="sticky top-0 flex h-12 items-center border-b border-gray-300  bg-white font-bold drop-shadow-sm">
       <ul className="flex flex-1 items-center justify-start gap-10  px-12  text-gray-900">
         <li
           className={cn(
@@ -54,8 +54,10 @@ function Navbar() {
           )}
         >
           <Link to="/cart">
-            My Cart{' '}
-            <span className="text-green-700">{totalItemCountInCart > 0 ? `(${totalItemCountInCart})` : null}</span>{' '}
+            <p className="truncate">
+              My Cart{' '}
+              <span className="text-green-700">{totalItemCountInCart > 0 ? `(${totalItemCountInCart})` : null}</span>
+            </p>
           </Link>
         </li>
       </ul>
