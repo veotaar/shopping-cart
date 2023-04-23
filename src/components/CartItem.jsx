@@ -27,7 +27,9 @@ function CartItem({ item }) {
 
   return (
     <div className={cn({ 'bg-gray-50': isDeleteHovered }, 'flex items-center gap-8 sm:gap-16')}>
-      <p className="truncate">{item.name}</p>
+      <p className="truncate">
+        {item.name} - {item.amount}
+      </p>
       <div className="ml-auto flex h-9 items-center border border-gray-300">
         <button
           onClick={() => {
