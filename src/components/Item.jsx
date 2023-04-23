@@ -12,7 +12,7 @@ function Item({ item }) {
           {item.name} - <span className="italic text-gray-600">{item.amount}</span>
         </p>
       </div>
-      <div className="w-2/6 text-gray-800 sm:w-1/6">{item.price.toFixed(2)} €</div>
+      <div className="w-2/6 text-gray-800 sm:w-1/6">€{item.price.toFixed(2)}</div>
       <div className="flex w-2/6 items-center justify-center gap-1">
         <button
           className={cn(
