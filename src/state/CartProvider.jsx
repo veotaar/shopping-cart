@@ -1,94 +1,8 @@
 import { createContext, useContext, useReducer } from 'react';
+import { initialCart } from './data';
 
 const CartContext = createContext(null);
 const CartDispatchContext = createContext(null);
-
-const initialCart = [
-  {
-    id: 1,
-    name: 'Bananas',
-    amount: '1 kg',
-    price: 2.19,
-    amountInCart: 0,
-  },
-  {
-    id: 2,
-    name: 'Lemons',
-    amount: '5 pack',
-    price: 1.4,
-    amountInCart: 0,
-  },
-  {
-    id: 3,
-    name: 'Potatoes',
-    amount: '3 kg',
-    price: 4.49,
-    amountInCart: 0,
-  },
-  {
-    id: 4,
-    name: 'Avocado',
-    amount: 'each',
-    price: 1.39,
-    amountInCart: 0,
-  },
-  {
-    id: 5,
-    name: 'Apples',
-    amount: '1.5 kg',
-    price: 2.49,
-    amountInCart: 0,
-  },
-  {
-    id: 6,
-    name: 'Oranges',
-    amount: '2 kg',
-    price: 2.99,
-    amountInCart: 0,
-  },
-  {
-    id: 7,
-    name: 'Onions',
-    amount: '1 kg',
-    price: 1.24,
-    amountInCart: 0,
-  },
-  {
-    id: 8,
-    name: 'Carrots',
-    amount: '500 g',
-    price: 1.09,
-    amountInCart: 0,
-  },
-  {
-    id: 9,
-    name: 'Beets',
-    amount: '500 g',
-    price: 1.39,
-    amountInCart: 0,
-  },
-  {
-    id: 10,
-    name: 'Tomatoes',
-    amount: '500 g',
-    price: 2.19,
-    amountInCart: 0,
-  },
-  {
-    id: 11,
-    name: 'Butternut Squash',
-    amount: 'each',
-    price: 2.98,
-    amountInCart: 0,
-  },
-  {
-    id: 12,
-    name: 'Tangerines',
-    amount: '1 kg',
-    price: 2.85,
-    amountInCart: 0,
-  },
-];
 
 function cartReducer(cart, action) {
   switch (action.type) {
@@ -100,6 +14,42 @@ function cartReducer(cart, action) {
         return item;
       });
     }
+    case 'increase': {
+      return cart.map((item) => {
+        if (item.id === action.payload.id) {
+          return {
+            ...action.payload,
+            amountInCart: action.payload.amountInCart + 1,
+          };
+        }
+        return item;
+      });
+    }
+    case 'decrease': {
+      return cart.map((item) => {
+        if (item.id === action.payload.id) {
+          return {
+            ...action.payload,
+            amountInCart: action.payload.amountInCart - 1,
+          };
+        }
+        return item;
+      });
+    }
+    case 'delete': {
+      return cart.map((item) => {
+        if (item.id === action.payload.id) {
+          return {
+            ...action.payload,
+            amountInCart: 0,
+          };
+        }
+        return item;
+      });
+    }
+    case 'reset': {
+      return initialCart;
+    }
     default: {
       throw Error(`Unknown action: ${action.type}`);
     }
@@ -110,8 +60,11 @@ export function CartProvider({ children }) {
   const [cart, dispatch] = useReducer(cartReducer, initialCart);
 
   return (
+    // prettier-ignore
     <CartContext.Provider value={cart}>
-      <CartDispatchContext.Provider value={dispatch}>{children}</CartDispatchContext.Provider>
+      <CartDispatchContext.Provider value={dispatch}>
+        {children}
+      </CartDispatchContext.Provider>
     </CartContext.Provider>
   );
 }
@@ -122,4 +75,25 @@ export function useCart() {
 
 export function useCartDispatch() {
   return useContext(CartDispatchContext);
+}
+
+export function useCartAmount() {
+  const cart = useContext(CartContext);
+  const totalItemCountInCart = cart.reduce((accumulator, currentValue) => accumulator + currentValue.amountInCart, 0);
+  return totalItemCountInCart;
+}
+
+export function useCartTotalPrice() {
+  const cart = useContext(CartContext);
+  const orderTotal = cart.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.amountInCart * currentValue.price,
+    0
+  );
+  return orderTotal.toFixed(2);
+}
+
+export function useItemsInCart() {
+  const cart = useContext(CartContext);
+  const filteredCart = cart.filter((item) => item.amountInCart >= 1);
+  return filteredCart;
 }
