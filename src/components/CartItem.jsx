@@ -30,7 +30,7 @@ function CartItem({ item }) {
       <p className="truncate">
         {item.name} - {item.amount}
       </p>
-      <div className="ml-auto flex h-9 items-center border border-gray-300">
+      <div className="ml-auto flex h-9 items-center rounded border border-gray-300">
         <button
           onClick={() => {
             dispatch({

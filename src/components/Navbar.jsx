@@ -15,7 +15,7 @@ function Navbar() {
 
   return (
     <nav className="sticky top-0 flex h-12 items-center border-b border-gray-300  bg-white font-bold drop-shadow-sm">
-      <ul className="flex flex-1 items-center justify-start gap-10  px-12  text-gray-900">
+      <ul className="flex flex-1 items-center justify-start  gap-10  px-12 text-gray-900">
         <li
           className={cn(
             {

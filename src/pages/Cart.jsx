@@ -1,13 +1,13 @@
 import { useCartAmount } from '../state/CartProvider';
-import CartItemList from '../components/CartItemList';
+import FullCart from '../components/FullCart';
+import EmptyCart from '../components/EmptyCart';
 
 function Cart() {
   const totalItemCountInCart = useCartAmount();
 
   return (
-    <div>
-      <h1>My Cart</h1>
-      {totalItemCountInCart < 1 ? <p>Your cart is empty</p> : <CartItemList />}
+    <div className="min-h-[calc(100vh-3rem)] bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-gray-50 to-gray-100">
+      {totalItemCountInCart < 1 ? <EmptyCart /> : <FullCart />}
     </div>
   );
 }

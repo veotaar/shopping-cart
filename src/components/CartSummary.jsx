@@ -17,7 +17,7 @@ function CartSummary() {
   );
 
   return (
-    <div className="max-w-xs border px-4 py-4">
+    <div className="w-full rounded border border-gray-300 bg-white p-4 shadow sm:max-w-md lg:mt-9">
       <h2 className="mb-2 text-xl font-bold">Order Summary</h2>
       <div className={sharedClasses}>
         <p>Items total:</p>
@@ -31,7 +31,9 @@ function CartSummary() {
       <div className={`${sharedClasses} mt-2`}>
         <p className="font-bold">Order total:</p>
         <p className="font-bold text-orange-700">
-          {totalPrice >= 25 ? `€${totalPrice}` : `€${Number(totalPrice) + shippingPrice}`}
+          {totalPrice >= 25
+            ? `€${Number(totalPrice).toFixed(2)}`
+            : `€${(Number(totalPrice) + shippingPrice).toFixed(2)}`}
         </p>
       </div>
       <button className="mt-3 w-full rounded bg-green-700 p-2 font-bold text-white hover:bg-green-800" type="button">
