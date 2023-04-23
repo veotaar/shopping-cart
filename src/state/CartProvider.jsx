@@ -25,6 +25,12 @@ function cartReducer(cart, action) {
         return item;
       });
     }
+    case 'increaseall': {
+      return cart.map((item) => ({
+        ...item,
+        amountInCart: item.amountInCart + 1,
+      }));
+    }
     case 'decrease': {
       return cart.map((item) => {
         if (item.id === action.payload.id) {
