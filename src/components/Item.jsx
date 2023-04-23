@@ -13,7 +13,7 @@ function Item({ item }) {
       <div className="w-2/6 text-gray-800 sm:w-1/6">€{item.price.toFixed(2)}</div>
       <div>
         <button
-          className="truncate rounded bg-green-100 px-4 py-2 text-green-900 transition-colors hover:bg-green-900 hover:text-white active:bg-green-700"
+          className="truncate rounded border border-green-900/25 px-4 py-2 text-green-900 transition-colors hover:bg-green-900 hover:text-white active:bg-green-700"
           type="button"
           onClick={() =>
             dispatch({

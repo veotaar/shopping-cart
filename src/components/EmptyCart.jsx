@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function EmptyCart() {
   return (
-    <div className="mt-10 text-center">
+    <div className="pt-10 text-center">
       <h1 className="mb-4 text-2xl">Your cart is empty.</h1>
       <Link className="self-start" to="/shop">
         <button
