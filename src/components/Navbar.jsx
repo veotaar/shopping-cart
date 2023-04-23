@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import cn from 'classnames';
-import { useCart } from '../state/CartProvider';
+import { useCartAmount } from '../state/CartProvider';
 
 function Navbar() {
   const [activePage, setActivePage] = useState('/');
   const { pathname } = useLocation();
 
-  const cartItems = useCart();
-  const totalItemCountInCart = cartItems.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.amountInCart,
-    0
-  );
+  const totalItemCountInCart = useCartAmount();
 
   useEffect(() => {
     setActivePage(pathname);
