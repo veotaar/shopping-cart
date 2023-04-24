@@ -26,11 +26,16 @@ function CartItem({ item }) {
   );
 
   return (
-    <div className={cn({ 'bg-gray-50': isDeleteHovered }, 'flex items-center gap-8 sm:gap-16')}>
+    <div
+      className={cn(
+        { 'bg-gray-50': isDeleteHovered, 'dark:bg-gray-600': isDeleteHovered },
+        'flex items-center gap-8 sm:gap-16'
+      )}
+    >
       <p className="truncate">
         {item.name} - {item.amount}
       </p>
-      <div className="ml-auto flex h-9 items-center rounded border border-gray-300">
+      <div className="ml-auto flex h-9 items-center rounded border border-gray-300 dark:border-gray-500">
         <button
           onClick={() => {
             dispatch({
@@ -41,13 +46,13 @@ function CartItem({ item }) {
             });
           }}
           disabled={item.amountInCart <= 1}
-          className="h-full bg-gray-200 px-1 hover:bg-gray-300 disabled:opacity-50"
+          className="h-full bg-gray-200 px-1 hover:bg-gray-300 disabled:opacity-50 dark:bg-gray-600 hover:dark:bg-gray-500"
           type="button"
         >
           <AiOutlineMinus />
         </button>
         <input
-          className="h-9 w-16 border-x border-gray-300 text-center focus:ring-inset focus:ring-green-500"
+          className="h-9 w-16 border-x border-gray-300 text-center focus:ring-inset focus:ring-green-500 dark:border-gray-500 dark:bg-gray-700"
           type="text"
           value={amountString}
           onChange={(e) => {
@@ -76,7 +81,7 @@ function CartItem({ item }) {
               },
             });
           }}
-          className="h-full bg-gray-200 px-1 hover:bg-gray-300"
+          className="h-full bg-gray-200 px-1 hover:bg-gray-300 dark:bg-gray-600 hover:dark:bg-gray-500"
           type="button"
         >
           <AiOutlinePlus />
@@ -94,7 +99,7 @@ function CartItem({ item }) {
             },
           })
         }
-        className="text-lg text-gray-400 hover:text-gray-800"
+        className="text-lg text-gray-400 hover:text-gray-800 hover:dark:text-gray-200"
         type="button"
       >
         <AiOutlineDelete />

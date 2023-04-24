@@ -11,7 +11,7 @@ function ItemList() {
       ))}
       <button
         onClick={() => dispatch({ type: 'increaseall' })}
-        className="truncate rounded border border-green-900/25 p-3 text-lg text-green-900 transition-colors hover:bg-green-900 hover:text-white active:bg-green-700"
+        className="truncate rounded border border-green-900/25 p-3 text-green-900 transition-colors hover:bg-green-900 hover:text-white active:bg-green-700 dark:border-green-100/25 dark:text-green-400 hover:dark:bg-green-400 hover:dark:text-green-950 active:dark:bg-green-500"
         type="button"
       >
         Add All to Cart

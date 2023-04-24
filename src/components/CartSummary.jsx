@@ -10,14 +10,14 @@ function CartSummary() {
   const freeShipping = (
     <div className={sharedClasses}>
       <p>Free Shipping:</p>
-      <p className="flex items-center text-gray-900">
+      <p className="flex items-center text-gray-900 dark:text-gray-100">
         <AiOutlineMinus />€{shippingPrice.toFixed(2)}
       </p>
     </div>
   );
 
   return (
-    <div className="w-full rounded border border-gray-300 bg-white p-4 shadow sm:max-w-md lg:mt-9">
+    <div className="w-full rounded border border-gray-300 bg-white p-4 shadow dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 sm:max-w-md lg:mt-9">
       <h2 className="mb-2 text-xl font-bold">Order Summary</h2>
       <div className={sharedClasses}>
         <p>Items total:</p>
@@ -30,7 +30,7 @@ function CartSummary() {
       {totalPrice >= 25 ? freeShipping : null}
       <div className={`${sharedClasses} mt-2`}>
         <p className="font-bold">Order total:</p>
-        <p className="font-bold text-orange-700">
+        <p className="font-bold text-orange-700 dark:text-orange-500">
           {totalPrice >= 25
             ? `€${Number(totalPrice).toFixed(2)}`
             : `€${(Number(totalPrice) + shippingPrice).toFixed(2)}`}
